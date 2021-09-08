@@ -71,7 +71,7 @@
                 navigator.mediaDevices
                     .getUserMedia({
                         audio: false,
-                        video: takeIsFront
+                        video: true
                     })
                     .then(function (stream) {
                         var CompatibleURL = window.URL || window.webkitURL;
