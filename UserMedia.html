@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <video id="video" autoplay playsinline webkit-playsinline />
+        <script type="text/javascript">
+            navigator.mediaDevices
+                .getUserMedia({
+                    audio: false,
+                    video: takeIsFront
+                })
+                .then(function (stream) {
+                    var CompatibleURL = window.URL || window.webkitURL;
+                    try {
+                        window.stream = stream;
+                        uploadDom.video.srcObject = stream;
+                    } catch (error) {
+                        uploadDom.video.src = CompatibleURL.createObjectURL(stream);
+                    }
+                    setTimeout(function () {
+                        var width = uploadDom.video.offsetWidth;
+                        var height = uploadDom.video.offsetHeight;
+                        if (width > height) {
+                            uploadDom.video.style.width = "auto";
+                            uploadDom.video.style.height = "100%";
+                        } else {
+                            uploadDom.video.style.width = "100%";
+                            uploadDom.video.style.height = "auto";
+                        }
+                    }, 1000);
+                })
+                .catch(function (err) {
+                    avalon.alert("不支持访问用户媒体设备", "");
+                });
+        </script>
+    </body>
+</html>
