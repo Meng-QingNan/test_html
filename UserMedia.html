@@ -9,34 +9,94 @@
     <body>
         <video id="video" autoplay playsinline webkit-playsinline />
         <script type="text/javascript">
-            navigator.mediaDevices
-                .getUserMedia({
-                    audio: false,
-                    video: takeIsFront
-                })
-                .then(function (stream) {
-                    var CompatibleURL = window.URL || window.webkitURL;
-                    try {
-                        window.stream = stream;
-                        uploadDom.video.srcObject = stream;
-                    } catch (error) {
-                        uploadDom.video.src = CompatibleURL.createObjectURL(stream);
+            function judgeBrand(sUserAgent) {
+                var isIphone = sUserAgent.match(/iphone/i) == "iphone";
+                var isHonor = sUserAgent.match(/honor/i) == "honor";
+                var isHuawei = sUserAgent.match(/huawei/i) == "huawei";
+                var isOppo = sUserAgent.match(/oppo/i) == "oppo";
+                var isOppoR15 = sUserAgent.match(/pacm00/i) == "pacm00";
+                var isVivo = sUserAgent.match(/vivo/i) == "vivo";
+                var isXiaomi = sUserAgent.match(/mi\s/i) == "mi ";
+                var isXiaomi2s = sUserAgent.match(/mix\s/i) == "mix ";
+                var isRedmi = sUserAgent.match(/redmi/i) == "redmi";
+                var isSamsung = sUserAgent.match(/sm-/i) == "sm-";
+                var isJieyu = sUserAgent.match(/z20/i) == "z20"; //双面屏设备
+                var isShangke = sUserAgent.match(/rk32/i) == "rk32"; //尚科双面屏设备
+                var isPDA = sUserAgent.match(/zhihuixianxuepda/i) == "zhihuixianxuepda"; //pda设备
+                if (isIphone) {
+                    return "iphone";
+                } else if (isHonor) {
+                    return "huaweiHonor";
+                } else if (isHuawei) {
+                    return "huawei";
+                } else if (isOppo || isOppoR15) {
+                    return "oppo";
+                } else if (isVivo) {
+                    return "vivo";
+                } else if (isRedmi) {
+                    return "xiaomiRed";
+                } else if (isXiaomi || isXiaomi2s) {
+                    return "xiaomi";
+                } else if (isSamsung) {
+                    return "samsung";
+                } else if (isJieyu) {
+                    return "jieyu";
+                } else if (isShangke) {
+                    return "shangke";
+                } else if (isPDA) {
+                    return "PDA";
+                } else {
+                    return "default";
+                }
+            }
+
+            let mobilePhoneModel = judgeBrand(navigator.userAgent.toLowerCase());
+            let arr = new Array();
+
+            navigator.mediaDevices.enumerateDevices().then(function (mediaDevices) {
+                mediaDevices.forEach((mediaDevice) => {
+                    if (mediaDevice.kind === "videoinput") {
+                        deviceIdArray.push(mediaDevice.deviceId);
                     }
-                    setTimeout(function () {
-                        var width = uploadDom.video.offsetWidth;
-                        var height = uploadDom.video.offsetHeight;
-                        if (width > height) {
-                            uploadDom.video.style.width = "auto";
-                            uploadDom.video.style.height = "100%";
-                        } else {
-                            uploadDom.video.style.width = "100%";
-                            uploadDom.video.style.height = "auto";
-                        }
-                    }, 1000);
-                })
-                .catch(function (err) {
-                    avalon.alert("不支持访问用户媒体设备", "");
                 });
+                getAutoUserMediaFun();
+            });
+
+            var takeIsFront = { facingMode: { exact: "environment" } };
+            if (mobilePhoneModel == "huawei" || mobilePhoneModel == "huaweiHonor") {
+                takeIsFront = { deviceId: { exact: arr[arr.length - 1] } };
+            }
+
+            function getAutoUserMediaFun() {
+                navigator.mediaDevices
+                    .getUserMedia({
+                        audio: false,
+                        video: takeIsFront
+                    })
+                    .then(function (stream) {
+                        var CompatibleURL = window.URL || window.webkitURL;
+                        try {
+                            window.stream = stream;
+                            uploadDom.video.srcObject = stream;
+                        } catch (error) {
+                            uploadDom.video.src = CompatibleURL.createObjectURL(stream);
+                        }
+                        setTimeout(function () {
+                            var width = uploadDom.video.offsetWidth;
+                            var height = uploadDom.video.offsetHeight;
+                            if (width > height) {
+                                uploadDom.video.style.width = "auto";
+                                uploadDom.video.style.height = "100%";
+                            } else {
+                                uploadDom.video.style.width = "100%";
+                                uploadDom.video.style.height = "auto";
+                            }
+                        }, 1000);
+                    })
+                    .catch(function (err) {
+                        avalon.alert("不支持访问用户媒体设备", "");
+                    });
+            }
         </script>
     </body>
 </html>
