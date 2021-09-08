@@ -7,7 +7,7 @@
         <title>Document</title>
     </head>
     <body>
-        <video id="video" autoplay />
+        <video id="video" autoplay playsinline webkit-playsinline />
         <script type="text/javascript">
             function judgeBrand(sUserAgent) {
                 var isIphone = sUserAgent.match(/iphone/i) == "iphone";
@@ -91,8 +91,6 @@
                                 video.style.width = "100%";
                                 video.style.height = "auto";
                             }
-
-                            video.play();
                         }, 1000);
                     })
                     .catch(function (err) {
