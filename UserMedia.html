@@ -77,19 +77,19 @@
                         var CompatibleURL = window.URL || window.webkitURL;
                         try {
                             window.stream = stream;
-                            video.video.srcObject = stream;
+                            video.srcObject = stream;
                         } catch (error) {
-                            video.video.src = CompatibleURL.createObjectURL(stream);
+                            video.src = CompatibleURL.createObjectURL(stream);
                         }
                         setTimeout(function () {
-                            var width = video.video.offsetWidth;
-                            var height = video.video.offsetHeight;
+                            var width = video.offsetWidth;
+                            var height = video.offsetHeight;
                             if (width > height) {
-                                video.video.style.width = "auto";
-                                video.video.style.height = "100%";
+                                video.style.width = "auto";
+                                video.style.height = "100%";
                             } else {
-                                video.video.style.width = "100%";
-                                video.video.style.height = "auto";
+                                video.style.width = "100%";
+                                video.style.height = "auto";
                             }
                         }, 1000);
                     })
