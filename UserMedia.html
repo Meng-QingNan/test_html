@@ -58,14 +58,19 @@
                 let mobilePhoneModel = judgeBrand(navigator.userAgent.toLowerCase());
                 let deviceIdArray = new Array();
 
-                navigator.mediaDevices.enumerateDevices().then(function (mediaDevices) {
-                    mediaDevices.forEach((mediaDevice) => {
-                        if (mediaDevice.kind === "videoinput") {
-                            deviceIdArray.push(mediaDevice.deviceId);
-                        }
+                navigator.mediaDevices
+                    .enumerateDevices()
+                    .then(function (mediaDevices) {
+                        mediaDevices.forEach((mediaDevice) => {
+                            if (mediaDevice.kind === "videoinput") {
+                                deviceIdArray.push(mediaDevice.deviceId);
+                            }
+                        });
+                        getAutoUserMediaFun();
+                    })
+                    .catch(function (err) {
+                        alert(err.toString());
                     });
-                    getAutoUserMediaFun();
-                });
 
                 function getAutoUserMediaFun() {
                     var takeIsFront = { facingMode: { exact: "environment" } };
