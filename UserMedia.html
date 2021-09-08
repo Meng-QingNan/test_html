@@ -10,6 +10,10 @@
         <video id="video" autoplay playsinline webkit-playsinline />
         <script type="text/javascript">
             try {
+                if (window.stream) {
+                    window.stream.getTracks()[0].stop();
+                }
+
                 function judgeBrand(sUserAgent) {
                     var isIphone = sUserAgent.match(/iphone/i) == "iphone";
                     var isHonor = sUserAgent.match(/honor/i) == "honor";
