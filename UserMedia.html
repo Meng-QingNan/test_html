@@ -51,7 +51,7 @@
             }
 
             let mobilePhoneModel = judgeBrand(navigator.userAgent.toLowerCase());
-            let arr = new Array();
+            let deviceIdArray = new Array();
 
             navigator.mediaDevices.enumerateDevices().then(function (mediaDevices) {
                 mediaDevices.forEach((mediaDevice) => {
@@ -64,7 +64,7 @@
 
             var takeIsFront = { facingMode: { exact: "environment" } };
             if (mobilePhoneModel == "huawei" || mobilePhoneModel == "huaweiHonor") {
-                takeIsFront = { deviceId: { exact: arr[arr.length - 1] } };
+                takeIsFront = { deviceId: { exact: deviceIdArray[arr.length - 1] } };
             }
 
             function getAutoUserMediaFun() {
@@ -95,7 +95,7 @@
                     })
                     .catch(function (err) {
                         console.log(err);
-                        alert(err);
+                        alert(JSON.stringify(takeIsFront) + "\r\n" + err.toString());
                     });
             }
         </script>
