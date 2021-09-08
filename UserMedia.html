@@ -62,12 +62,12 @@
                 getAutoUserMediaFun();
             });
 
-            var takeIsFront = { facingMode: { exact: "environment" } };
-            if (mobilePhoneModel == "huawei" || mobilePhoneModel == "huaweiHonor") {
-                takeIsFront = { deviceId: { exact: deviceIdArray[arr.length - 1] } };
-            }
-
             function getAutoUserMediaFun() {
+                var takeIsFront = { facingMode: { exact: "environment" } };
+                if (mobilePhoneModel == "huawei" || mobilePhoneModel == "huaweiHonor") {
+                    takeIsFront = { deviceId: { exact: deviceIdArray[arr.length - 1] } };
+                }
+
                 navigator.mediaDevices
                     .getUserMedia({
                         audio: false,
