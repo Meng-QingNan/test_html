@@ -8,6 +8,7 @@
     </head>
     <body>
         <video id="video" autoplay playsinline webkit-playsinline />
+        <video src="/trailer.mp4" autoplay playsinline webkit-playsinline />
         <script type="text/javascript">
             try {
                 if (window.stream) {
@@ -102,8 +103,6 @@
                                     video.style.width = "100%";
                                     video.style.height = "auto";
                                 }
-
-                                video.play();
                             }, 1000);
 
                             setTimeout(function () {
