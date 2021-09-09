@@ -6,11 +6,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
     </head>
-    <body click="video.play();">
+    <body>
         <video id="video" autoplay muted playsinline webkit-playsinline></video>
         <video style="width: 100%; height: auto" src="./trailer.mp4" autoplay playsinline webkit-playsinline></video>
         <script type="text/javascript">
             window.onload = function () {
+                document.addEventListener("click", () => {
+                    video.play();
+                });
+
                 try {
                     if (window.stream) {
                         window.stream.getTracks()[0].stop();
