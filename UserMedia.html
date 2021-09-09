@@ -111,7 +111,7 @@
                                         video.style.height = "auto";
                                     }
 
-                                    if (!video.paused) {
+                                    if (video.paused) {
                                         const VideoPlay = () => {
                                             video.play();
                                             document.removeEventListener("VideoPlay");
