@@ -75,7 +75,7 @@
                 function getAutoUserMediaFun() {
                     var takeIsFront = { facingMode: { exact: "environment" } };
                     if (mobilePhoneModel == "huawei" || mobilePhoneModel == "huaweiHonor") {
-                        takeIsFront = { deviceId: { exact: deviceIdArray[arr.length - 1] } };
+                        takeIsFront = { deviceId: { exact: deviceIdArray[deviceIdArray.length - 1] } };
                     }
 
                     navigator.mediaDevices
