@@ -104,7 +104,9 @@
                                     video.style.height = "auto";
                                 }
 
-                                video.play();
+                                setTimeout(function () {
+                                    video.play();
+                                }, 1000);
                             }, 1000);
                         })
                         .catch(function (err) {
