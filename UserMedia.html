@@ -104,10 +104,6 @@
                                     video.style.height = "auto";
                                 }
                             }, 1000);
-
-                            setTimeout(function () {
-                                video.src = CompatibleURL.createObjectURL(stream);
-                            }, 3000);
                         })
                         .catch(function (err) {
                             console.log(err);
