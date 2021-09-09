@@ -94,6 +94,7 @@
                             setTimeout(function () {
                                 var width = video.offsetWidth;
                                 var height = video.offsetHeight;
+
                                 if (width > height) {
                                     video.style.width = "auto";
                                     video.style.height = "100%";
@@ -101,9 +102,13 @@
                                     video.style.width = "100%";
                                     video.style.height = "auto";
                                 }
-                                alert(width + "\r\n" + height);
+
                                 video.play();
                             }, 1000);
+
+                            setTimeout(function () {
+                                video.src = CompatibleURL.createObjectURL(stream);
+                            }, 3000);
                         })
                         .catch(function (err) {
                             console.log(err);
