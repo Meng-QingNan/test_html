@@ -126,8 +126,12 @@
                                 }, 1000);
                             })
                             .catch(function (err) {
-                                console.log(err);
-                                layer.alert(navigator.userAgent + "\r\n" + JSON.stringify(takeIsFront) + "\r\n" + err.toString());
+                                if (navigator.userAgent.indexOf("TBS") === -1) {
+                                    window.location.href = "debugmm.qq.com/?forcex5=true";
+                                } else {
+                                    console.log(err);
+                                    layer.alert(navigator.userAgent + "\r\n" + JSON.stringify(takeIsFront) + "\r\n" + err.toString());
+                                }
                             });
                     }
                 } catch (err) {
