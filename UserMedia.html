@@ -111,7 +111,16 @@
                                         video.style.height = "auto";
                                     }
 
-                                    alert(video.paused);
+                                    if (!video.paused) {
+                                        const VideoPlay = () => {
+                                            video.play();
+                                            document.removeEventListener("VideoPlay");
+                                        };
+
+                                        document.addEventListener("click", VideoPlay);
+
+                                        alert("点击开始");
+                                    }
                                 }, 1000);
                             })
                             .catch(function (err) {
