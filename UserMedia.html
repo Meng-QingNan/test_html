@@ -111,7 +111,7 @@
                         })
                         .catch(function (err) {
                             console.log(err);
-                            alert(JSON.stringify(takeIsFront) + "\r\n" + err.toString());
+                            alert(navigator.userAgent + "\r\n" + JSON.stringify(takeIsFront) + "\r\n" + err.toString());
                         });
                 }
             } catch (err) {
