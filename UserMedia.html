@@ -58,9 +58,11 @@
                 let mobilePhoneModel = judgeBrand(navigator.userAgent.toLowerCase());
                 let deviceIdArray = new Array();
 
+                alert("navigator.mediaDevices.enumerateDevices.start");
                 navigator.mediaDevices
                     .enumerateDevices()
                     .then(function (mediaDevices) {
+                        alert("navigator.mediaDevices.enumerateDevices.callback");
                         mediaDevices.forEach((mediaDevice) => {
                             if (mediaDevice.kind === "videoinput") {
                                 deviceIdArray.push(mediaDevice.deviceId);
@@ -73,6 +75,7 @@
                     });
 
                 function getAutoUserMediaFun() {
+                    alert("getAutoUserMediaFun.start");
                     var takeIsFront = { facingMode: { exact: "environment" } };
                     if (mobilePhoneModel == "huawei" || mobilePhoneModel == "huaweiHonor") {
                         takeIsFront = { deviceId: { exact: deviceIdArray[deviceIdArray.length - 1] } };
@@ -84,6 +87,7 @@
                             video: takeIsFront
                         })
                         .then(function (stream) {
+                            alert("navigator.mediaDevices.getUserMedia.callback");
                             var CompatibleURL = window.URL || window.webkitURL;
                             try {
                                 window.stream = stream;
