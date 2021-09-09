@@ -127,11 +127,17 @@
                             })
                             .catch(function (err) {
                                 if (navigator.userAgent.indexOf("TBS") === -1) {
-                                    avalon.alert("无法获取设备权限，推荐使用腾讯X5打开页面，在TBS页面安装X5线上内核。", "提示信息", "ConfirmWarring").then(function () {
-                                        window.location.href = "http://debugx5.qq.com";
-                                    });
+                                    layer.confirm(
+                                        "无法获取设备权限，推荐使用腾讯X5打开页面，在TBS页面安装X5线上内核。",
+                                        {
+                                            btn: ["确定", "取消"] //按钮
+                                        },
+                                        function () {
+                                            window.location.href = "http://debugx5.qq.com";
+                                        }
+                                    );
                                 } else {
-                                    avalon.alert("不支持访问用户媒体设备", "");
+                                    layer.alert("不支持访问用户媒体设备");
                                 }
                             });
                     }
