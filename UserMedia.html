@@ -117,7 +117,7 @@
                                 if (video.paused) {
                                     const VideoPlay = () => {
                                         video.play();
-                                        document.removeEventListener("VideoPlay");
+                                        document.removeEventListener("click", VideoPlay);
                                     };
 
                                     document.addEventListener("click", VideoPlay);
