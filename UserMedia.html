@@ -13,10 +13,6 @@
         <!-- <video style="width: 100%; height: auto" src="./trailer.mp4" autoplay playsinline webkit-playsinline></video> -->
         <script type="text/javascript">
             window.onload = function () {
-                document.addEventListener("click", () => {
-                    video.play();
-                });
-
                 try {
                     if (window.stream) {
                         window.stream.getTracks()[0].stop();
