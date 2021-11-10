@@ -31,6 +31,12 @@
                     new AMap.Geolocation().getCurrentPosition((status, result) => {
                         if (status === "complete" && result.info === "SUCCESS") {
                             layer.alert("您的位置：" + result.position.R + "," + result.position.Q);
+                            map.add(
+                                new AMap.Marker({
+                                    position: new AMap.LngLat(result.position.R, result.position.Q)
+                                })
+                            );
+                            map.panTo(new AMap.LngLat(result.position.R, result.position.Q));
                         } else {
                             layer.alert("failed:" + JSON.stringify(result));
                         }
