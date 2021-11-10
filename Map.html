@@ -6,6 +6,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>测试定位</title>
         <script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=arfGyEW8A1VoIrpGFIoNjBvjYhKsZ0EG"></script>
+        <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://cdn.bootcdn.net/ajax/libs/layer/3.5.1/layer.min.js"></script>
         <style>
             html,
             body {
@@ -34,9 +36,9 @@
                         var mk = new BMap.Marker(r.point);
                         map.addOverlay(mk);
                         map.panTo(r.point);
-                        alert("您的位置：" + r.point.lng + "," + r.point.lat);
+                        layer.alert("您的位置：" + r.point.lng + "," + r.point.lat);
                     } else {
-                        alert("failed" + this.getStatus());
+                        layer.alert("failed" + this.getStatus());
                     }
                 });
             };
